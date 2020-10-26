@@ -16,7 +16,7 @@ client.on('message', msg => {
 	//content of message
 	const content = msg.content.toLowerCase()
 	//if message contains any letter other than d, return
-	if(!/[^d0-9]+/.test(content)) return
+	if(/[^d0-9]+/.test(content)) return
 	//channel message was sent in
 	const channel = client.channels.cache.get(msg.channel.id)
 	//location of d e.g 2d4 is 1
