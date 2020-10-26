@@ -7,7 +7,7 @@ function isDiceRoll(diceRoll, content) {
 		return false
 	if(diceRoll.diceAmount < 1 || diceRoll.diceSides < 1)
 		return false
-	if(!content.contains('d') && !content.contains('D'))
+	if(!content.includes('d'))
 		return false
 	return true
 }
@@ -16,7 +16,7 @@ client.on('message', msg => {
 	//if message is from self, prevents infinite loop
 	if (msg.author.bot) return;
 	//content of message
-	const content = msg.content
+	const content = msg.content.toLowerCase()
 	//channel message was sent in
 	const channel = client.channels.cache.get(msg.channel.id)
 	//location of d e.g 2d4 is 1
@@ -24,7 +24,7 @@ client.on('message', msg => {
 	//diceroll with amount of dice and dice sides extracted from message
 	const diceRoll = {
 		diceAmount: content.slice(0, dLocation),
-		diceSides: content.substr(dLocation + 1, content.length)
+		diceSides: content.slice(dLocation + 1, content.length)
 	}
 
 	if(isDiceRoll(diceRoll, content)){
@@ -34,7 +34,7 @@ client.on('message', msg => {
 		for(let i = 0; i < diceRoll.diceAmount; i++){
 			results[i] = Math.floor(Math.random() * diceRoll.diceSides) + 1
 			total += results[i]
-			returnMessage += results[i] + '\n'
+			returnMessage += `${results[i]}\n`
 		}
 		if(diceRoll.diceAmount > 1)
 			returnMessage += `-\n${total}\n`
