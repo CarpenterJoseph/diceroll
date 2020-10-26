@@ -15,7 +15,7 @@ client.on('message', msg => {
 	if (msg.author.bot) return;
 	//content of message
 	const content = msg.content.toLowerCase()
-	//if message contains any letter other than d, return
+	//if message contains any letter other than d or number, return
 	if(/[^d0-9]+/.test(content)) return
 	//channel message was sent in
 	const channel = client.channels.cache.get(msg.channel.id)
