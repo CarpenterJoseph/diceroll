@@ -7,8 +7,6 @@ function isDiceRoll(diceRoll, content) {
 		return false
 	if(diceRoll.diceAmount < 1 || diceRoll.diceSides < 1)
 		return false
-	if(!content.includes('d'))
-		return false
 	return true
 }
 
@@ -17,6 +15,8 @@ client.on('message', msg => {
 	if (msg.author.bot) return;
 	//content of message
 	const content = msg.content.toLowerCase()
+	//if message contains any letter other than d, return
+	if(/[^d]+/.test(content)) return
 	//channel message was sent in
 	const channel = client.channels.cache.get(msg.channel.id)
 	//location of d e.g 2d4 is 1
