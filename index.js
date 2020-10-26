@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 //if message was a valid diceroll
-function isDiceRoll(diceRoll) {
+function validDiceRoll(diceRoll) {
 	if(diceRoll.diceAmount.isNaN || diceRoll.diceSides.isNaN)
 		return false
 	if(diceRoll.diceAmount < 1 || diceRoll.diceSides < 1)
@@ -23,7 +23,7 @@ client.on('message', msg => {
 		diceSides: content.slice(dLocation + 1, content.length)
 	}
 
-	if(isDiceRoll(diceRoll)){
+	if(validDiceRoll(diceRoll)){
 		let results = []
 		let total = 0
 		let returnMessage = '\`\`\`\n'
