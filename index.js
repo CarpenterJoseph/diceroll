@@ -39,8 +39,10 @@ client.on('message', msg => {
 
 		if(returnMessage.length >= 2000 || diceRoll.diceAmount > 100)
 			channel.send('That\'s a bit aggressive...')
-		else
+		else {
 			channel.send(returnMessage)
+			console.log(`Some just rolled a ${diceAmount}d${diceSides} and got a ${total}`)
+		}
 	}
 });
 
