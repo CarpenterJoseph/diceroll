@@ -41,7 +41,7 @@ client.on('message', msg => {
 			channel.send('That\'s a bit aggressive...')
 		else {
 			channel.send(returnMessage)
-			console.log(`Some just rolled a ${diceAmount}d${diceSides} and got a ${total}`)
+			console.log(`Some just rolled a ${diceRoll.diceAmount}d${diceRoll.diceSides} and got a ${total}`)
 		}
 	}
 });
